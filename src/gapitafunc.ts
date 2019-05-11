@@ -6,8 +6,21 @@ const btnSend: HTMLButtonElement = document.querySelector("#btnSend");
 const username = new Date().getTime();*/
 
 const txtOnlineUsers: HTMLParagraphElement = document.querySelector("#txtOnlineUsers");
+const txtMoreOnlineUsers: HTMLParagraphElement = document.querySelector("#txtMoreOnlineUsers");
 
-const onlineUsersConnection = new signalR.HubConnectionBuilder()
+const Connection = new signalR.HubConnectionBuilder()
+    .withUrl("/hub/GapitaHub")
+    .build();
+
+Connection.start().catch(err => document.write(err))
+    .then(() => Connection.send("checkOnlineUsers", window.location.href));
+
+Connection.on("getOnlineUsers", (onlineUsersCount: string) => {
+    txtOnlineUsers.innerHTML = `Online users: <span style="font-weight:bold">${onlineUsersCount}</span>`;
+    txtMoreOnlineUsers.innerHTML = `Online users: <span style="font-weight:bold">${onlineUsersCount}</span>`;
+});
+
+/*const onlineUsersConnection = new signalR.HubConnectionBuilder()
     .withUrl("/hub/OnlineUsersHub")
     .build();
 
@@ -15,7 +28,9 @@ onlineUsersConnection.start().catch(err => document.write(err));
 
 onlineUsersConnection.on("onlineUsers", (onlineUsersCount: string) => {
     txtOnlineUsers.innerHTML = `Online users: <span style="font-weight:bold">${onlineUsersCount}</span>`;
-});
+    txtMoreOnlineUsers.innerHTML = `Online users: <span style="font-weight:bold">${onlineUsersCount}</span>`;
+});*/
+
 
 /*connection.on("messageReceived", (username: string, message: string) => {
     let m = document.createElement("div");

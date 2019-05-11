@@ -32,8 +32,7 @@ namespace Gapita
 
             app.UseSignalR(options =>
             {
-                options.MapHub<OnlineUsersHub>("/hub/OnlineUsersHub");
-                options.MapHub<ChatHub>("/hub/ChatHub");
+                options.MapHub<GapitaHub>("/hub/GapitaHub");
             });
         }
     }

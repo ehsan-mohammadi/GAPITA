@@ -4,10 +4,13 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-    entry: "./src/index.ts",
+    entry: {
+        gapitafunc: "./src/gapitafunc.ts",
+        eventfunc: "./src/eventfunc.ts"
+    },
     output: {
         path: path.resolve(__dirname, "wwwroot"),
-        filename: "[name].[chunkhash].js",
+        filename: "[name].js",
         publicPath: "/"
     },
     resolve: {
@@ -24,7 +27,12 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(["wwwroot/*"]),
         new HtmlWebpackPlugin({
-            template: "./src/index.html"
+            template: "./src/index.html",
+            filename: 'index.html'
+        }),
+        new HtmlWebpackPlugin({
+            template: "./src/chat.html",
+            filename: 'chat.html'
         }),
         new CopyWebpackPlugin([
             {from: "./src/img", to: "./src/img"},
