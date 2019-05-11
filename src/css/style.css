@@ -110,6 +110,7 @@ div.items-menu-bar-button {
     height: 50px;
     margin-left: 20px;
     padding-top: 10px;
+    border-color: #fe9400;
     display: flex;
     justify-content: center;
     transition: 0.3s;
@@ -119,7 +120,6 @@ div.items-menu-bar-button:hover {
     height: 47px;
     border-style: solid;
     border-width: 0px 0px 3px 0px;
-    border-color: #fe9400;
     cursor: pointer;
 }
 
@@ -169,8 +169,9 @@ div.more-menu-bar-button {
     width: auto;
     height: 50px;
     flex-basis: auto;
-    margin-right: 15px;
+    margin-right: 10px;
     padding-top: 10px;
+    border-color: #fe9400;
     display: none;
     justify-content: center;
     transition: 0.3s;
@@ -180,7 +181,6 @@ div.more-menu-bar-button:hover {
     height: 47px;
     border-style: solid;
     border-width: 0px 0px 3px 0px;
-    border-color: #fe9400;
     cursor: pointer;
 }
 
@@ -196,6 +196,10 @@ p.text-menu-bar-more {
     color:  #000;
 }
 
+div.items-more-menu-button, div.more-menu-online, p.text-more-menu-button, p.text-more-menu-online {
+    display: none;
+}
+
 @media screen and (max-width: 930px) {
     p.text-menu-bar-button {
         display: none;
@@ -203,6 +207,78 @@ p.text-menu-bar-more {
 }
 
 @media screen and (max-width: 650px) {
+     div.more-menu {
+        top: -300px;
+        right: 10px;
+        position: fixed;
+        background-color: white;
+        float: right;
+        width: 230px;
+        height: 300px;
+        opacity: 0;
+        text-align: center;
+        border-radius: 7px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        overflow-y: auto;
+        max-height: calc(100vh - 70px);
+    }
+    
+    div.items-more-menu-button {
+        width: auto;
+        height: 50px;
+        margin: 0px 20px 0px 20px;
+        padding-top: 10px;
+        border-color: #fe9400;
+        display: flex;
+        justify-content: left;
+        transition: 0.3s;
+    }
+    
+    div.items-more-menu-button:hover {
+        height: 47px;
+        border-style: solid;
+        border-width: 0px 0px 3px 0px;
+        cursor: pointer;
+    }
+    
+    div.more-menu-online {
+        width: auto;
+        height: 47px;
+        margin: 0px 20px 0px 20px;
+        padding-top: 10px;
+        display: flex;
+        justify-content: left;
+        border-style: solid;
+        border-width: 1px 0px 0px 0px;
+        border-color: #818181;
+    }
+    
+    p.text-more-menu-button {
+        width: auto;
+        font-family: 'SegoeUI';
+        font-size: 10pt;
+        font-weight:bold;
+        text-align:left;
+        vertical-align: top;
+        line-height: 40px;
+        margin: 0px;
+        display: initial;
+        color:  #000;
+    }
+    
+    p.text-more-menu-online {
+        width: auto;
+        font-family: 'SegoeUI-Light';
+        font-size: 11pt;
+        font-weight:lighter;
+        text-align:left;
+        vertical-align: top;
+        line-height: 40px;
+        margin: 0px;
+        display: initial;
+        color:  #000;
+    }
+
     div.items-menu-bar-button, div.online-users-menu-bar {
         display: none;
     }
