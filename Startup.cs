@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-
 using SignalRWebPack.Hubs;
 
 namespace Gapita
@@ -33,7 +32,8 @@ namespace Gapita
 
             app.UseSignalR(options =>
             {
-                options.MapHub<ChatHub>("/hub");
+                options.MapHub<OnlineUsersHub>("/hub/OnlineUsersHub");
+                options.MapHub<ChatHub>("/hub/ChatHub");
             });
         }
     }

@@ -1,23 +1,37 @@
 import * as signalR from "@aspnet/signalr";
 
-const divMessage: HTMLDivElement = document.querySelector("#divMessage");
+/*const divMessage: HTMLDivElement = document.querySelector("#divMessage");
 const tbMessage: HTMLInputElement = document.querySelector("#tbMessage");
 const btnSend: HTMLButtonElement = document.querySelector("#btnSend");
-const username = new Date().getTime();
+const username = new Date().getTime();*/
 
-const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/hub")
+const txtOnlineUsers: HTMLParagraphElement = document.querySelector("#txtOnlineUsers");
+
+const onlineUsersConnection = new signalR.HubConnectionBuilder()
+    .withUrl("/hub/OnlineUsersHub")
     .build();
 
-connection.start().catch(err => document.write(err));
+onlineUsersConnection.start().catch(err => document.write(err));
 
-connection.on("messageReceived", (username: string, message: string) => {
+onlineUsersConnection.on("onlineUsers", (onlineUsersCount: string) => {
+    txtOnlineUsers.innerHTML = `Online users: <span style="font-weight:bold">${onlineUsersCount}</span>`;
+});
+
+/*connection.on("messageReceived", (username: string, message: string) => {
     let m = document.createElement("div");
 
     m.innerHTML =
         `<div class="message-author">${username}</div><div>${message}</div>`;
     divMessage.appendChild(m);
     divMessage.scrollTop = divMessage.scrollHeight;
+});
+
+connection.on("newUser", () => {
+    console.log("New user joined!");
+});
+
+connection.on("onlineUsers", (onlineUsersCount: number) => {
+    console.log(onlineUsersCount);
 });
 
 tbMessage.addEventListener("keyup", (e: KeyboardEvent) => {
@@ -31,4 +45,4 @@ btnSend.addEventListener("click", send);
 function send() {
     connection.send("newMessage", username, tbMessage.value)
         .then(() => tbMessage.value = "");
-}
+}*/
