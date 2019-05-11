@@ -2,7 +2,7 @@
   "name": "Gapita",
   "version": "1.0.0",
   "private": true,
-  "description": "",
+  "description": "An anonymous and random chat messaging for talking to strangers",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode=development --watch",
@@ -11,7 +11,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "clean-webpack-plugin": "1.0.1",
     "copy-webpack-plugin": "^5.0.3",
