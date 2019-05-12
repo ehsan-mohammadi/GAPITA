@@ -1,4 +1,5 @@
 import * as signalR from "@aspnet/signalr";
+import * as $ from "Jquery";
 
 /*const divMessage: HTMLDivElement = document.querySelector("#divMessage");
 const tbMessage: HTMLInputElement = document.querySelector("#tbMessage");
@@ -7,18 +8,53 @@ const username = new Date().getTime();*/
 
 const txtOnlineUsers: HTMLParagraphElement = document.querySelector("#txtOnlineUsers");
 const txtMoreOnlineUsers: HTMLParagraphElement = document.querySelector("#txtMoreOnlineUsers");
+const divLoadingBackground: HTMLDivElement = document.querySelector("#divLoadingBackground");
+const divLoading: HTMLDivElement = document.querySelector("#divLoading");
+const divError: HTMLDivElement = document.querySelector("#divError");
+const divTryAgain: HTMLDivElement = document.querySelector("#divTryAgain");
+const divChat: HTMLDivElement = document.querySelector("#divChat");
 
-const Connection = new signalR.HubConnectionBuilder()
+const connection = new signalR.HubConnectionBuilder()
     .withUrl("/hub/GapitaHub")
     .build();
 
-Connection.start().catch(err => document.write(err))
-    .then(() => Connection.send("checkOnlineUsers", window.location.href));
+connection.start().catch(err => {
+    $(divLoading).hide();
+    $(divTryAgain).hide();
+    $(divError).show();
+})
+.then(() => {
+    connection.send("checkOnlineUsers", window.location.href);
+    connection.send("searchStranger");
+    setTimeout(function() {
+        if($(divLoading).is(":visible")) {
+            connection.stop();
+            $(divLoading).hide();
+            $(divError).hide();
+            $(divTryAgain).show();
+        }
+    }, 60000);
+});
 
-Connection.on("getOnlineUsers", (onlineUsersCount: string) => {
+connection.on("getOnlineUsers", (onlineUsersCount: string) => {
     txtOnlineUsers.innerHTML = `Online users: <span style="font-weight:bold">${onlineUsersCount}</span>`;
     txtMoreOnlineUsers.innerHTML = `Online users: <span style="font-weight:bold">${onlineUsersCount}</span>`;
 });
+
+connection.on("joinToStranger", (isAloneStranger: boolean) => {
+    console.log(isAloneStranger);
+    if(isAloneStranger) {
+        $(divLoading).hide();
+        $(divError).hide();
+        $(divLoadingBackground).hide();
+        $(divChat).show();
+    }
+});
+
+/*connection.on("tryAgain", () => {
+    $(divLoading).hide();
+    $(divTryAgain).show();
+});*/
 
 /*const onlineUsersConnection = new signalR.HubConnectionBuilder()
     .withUrl("/hub/OnlineUsersHub")

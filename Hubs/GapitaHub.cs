@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -23,7 +24,6 @@ namespace SignalRWebPack.Hubs
             string onlineUsersStr = onlineUsersCount >= 100000 ? ("+100000") : onlineUsersCount.ToString();
 
             await Clients.All.SendAsync("getOnlineUsers", onlineUsersStr);
-
             await base.OnDisconnectedAsync(exception);
         }
 
@@ -31,13 +31,34 @@ namespace SignalRWebPack.Hubs
         {
             if(url.Contains("/chat.html"))
             {
-                users.Add(Context.ConnectionId, DateTime.Now.ToString());
+                users.Add(Context.ConnectionId, "-1");
             }
 
             int onlineUsersCount = GetUsersList();
             string onlineUsersStr = onlineUsersCount >= 100000 ? ("+100000") : onlineUsersCount.ToString();
 
             await Clients.All.SendAsync("getOnlineUsers", onlineUsersStr);
+        }
+
+        public async Task SearchStranger()
+        {
+            string aloneStrangerId = users.FirstOrDefault(user => (user.Value == "-1" && user.Key != Context.ConnectionId)).Key;
+
+            if(aloneStrangerId != null)
+                {
+                    users[aloneStrangerId] = Context.ConnectionId;
+                    users[Context.ConnectionId] = aloneStrangerId;
+
+                    string groupName = Context.ConnectionId + aloneStrangerId;
+                    await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
+                    await Groups.AddToGroupAsync(aloneStrangerId, groupName);
+
+                    await Clients.Clients(new List<string>() { aloneStrangerId, Context.ConnectionId }).SendAsync("joinToStranger", true);
+                }
+            else
+                {
+                    await Clients.Caller.SendAsync("joinToStranger", false);
+                }
         }
 
         public async Task NewMessage(string username, string message)
