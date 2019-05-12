@@ -5,27 +5,67 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>GAPITA - Chat room</title>
         <link rel="icon" href="src/img/GapitaIcon.ico" type="image/ico" />
+        <link href="src/css/loading.css" rel="stylesheet" />
         <link href="src/css/style.css" rel="stylesheet" />
     </head>
     <body>
-        <div id="Footer" class="footer">
-            <p class="footer-text">© 2019 GAPITA</p>
-            <p class="footer-policy-text">By using GAPITA, you are accepting our privacy and terms of services . You must be 18+ or 13+ with parental permission to use our free chat site.</p>
+        <div id="divChat" hidden>
+            <div class="chat-content"></div>
+            <div class="chat-bar">
+                <div class="chat-bar-text-area">
+                    <textarea class="message-text-area" placeholder="Type something..."></textarea>
+                </div>
+                <div class="chat-bar-splitter"></div>
+                <div class="chat-bar-button">
+                    <div class="button-chat ripple">
+                        <img width="26" height="26" src="/src/img/ImageSend.svg" style="margin-top:12px;" />
+                    </div>
+                </div>
+                <div class="chat-bar-button">
+                    <div class="button-chat ripple">
+                        <img width="26" height="26" src="/src/img/ImageBlock.svg" style="margin-top:12px;" />
+                    </div>
+                </div>
+                <div class="chat-bar-button" hidden>
+                    <div class="button-chat ripple">
+                        <img width="26" height="26" src="/src/img/ImageRefresh.svg" style="margin-top:12px;" />
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <div id="divLoadingBackground" class="loading-background">
+            <div id="divLoading" class="loading-content">
+                    <div class="spinner">
+                        <div class="double-bounce1"></div>
+                        <div class="double-bounce2"></div>
+                    </div>
+                    <p class="normal-text" style="text-align: center;">Please wait to find a stranger...</p>
+            </div>
+            <div id="divError" class="loading-content" hidden>
+                <p class="normal-text" style="text-align: center;">An error occurred while connecting to the server :(</p>
+                <button id="btnTryAgain" class="button-round-box ripple" style="margin-top: 10px;">Back</button>
+            </div>
+            <div id="divTryAgain" class="loading-content" hidden>
+                    <p class="normal-text" style="text-align: center;">Sorry! We couldn't find any stranger :(</p>
+                    <button id="btnTryAgain" class="button-round-box ripple" style="margin-top: 10px;">Try again</button>
+            </div>
+        </div>
+
         <div id="divMoreMenu" class="more-menu">
-            <div class="items-more-menu-button">
+            <div id="btnMoreHome" class="items-more-menu-button">
                 <img width="25" height="25" src="/src/img/ImageHome.svg" style="margin:7px 7px 7px 0px;" />
                 <p class="text-more-menu-button">Home</p>
             </div>
-            <div class="items-more-menu-button">
+            <div id="btnMoreBug" class="items-more-menu-button">
                 <img width="25" height="25" src="/src/img/ImageBug.svg" style="margin:7px 7px 7px 0px;" />
                 <p class="text-more-menu-button">Bug reporting</p>
             </div>
-            <div class="items-more-menu-button">
+            <div id="btnMoreGithub" class="items-more-menu-button">
                 <img width="25" height="25" src="/src/img/ImageGithub.svg" style="margin:7px 7px 7px 0px;" />
                 <p class="text-more-menu-button">GAPITA on Github</p>
             </div>
-            <div class="items-more-menu-button">
+            <div id="btnMoreAbout" class="items-more-menu-button">
                 <img width="25" height="25" src="/src/img/ImageInformation.svg" style="margin:7px 7px 7px 0px;" />
                 <p class="text-more-menu-button">About</p>
             </div>
@@ -40,19 +80,19 @@
                 <p class="text-menu-bar">GAPITA</p>
             </div>
             <div class="items-menu-bar">
-                <div class="items-menu-bar-button">
+                <div id="btnMenuHome" class="items-menu-bar-button">
                     <img width="25" height="25" src="/src/img/ImageHome.svg" style="margin:7px 7px 7px 0px;" />
                     <p class="text-menu-bar-button">Home</p>
                 </div>
-                <div class="items-menu-bar-button">
+                <div id="btnMenuBug" class="items-menu-bar-button">
                     <img width="25" height="25" src="/src/img/ImageBug.svg" style="margin:7px 7px 7px 0px;" />
                     <p class="text-menu-bar-button">Bug reporting</p>
                 </div>
-                <div class="items-menu-bar-button">
+                <div id="btnMenuGithub" class="items-menu-bar-button">
                     <img width="25" height="25" src="/src/img/ImageGithub.svg" style="margin:7px 7px 7px 0px;" />
                     <p class="text-menu-bar-button">GAPITA on Github</p>
                 </div>
-                <div class="items-menu-bar-button">
+                <div id="btnMenuAbout" class="items-menu-bar-button">
                     <img width="25" height="25" src="/src/img/ImageInformation.svg" style="margin:7px 7px 7px 0px;" />
                     <p class="text-menu-bar-button">About</p>
                 </div>

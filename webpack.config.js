@@ -5,8 +5,9 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     entry: {
-        gapitafunc: "./src/gapitafunc.ts",
-        eventfunc: "./src/eventfunc.ts"
+        eventfunc: "./src/eventfunc.ts",
+        indexfunc: "./src/indexfunc.ts",
+        chatfunc: "./src/chatfunc.ts",
     },
     output: {
         path: path.resolve(__dirname, "wwwroot"),
@@ -28,10 +29,12 @@ module.exports = {
         new CleanWebpackPlugin(["wwwroot/*"]),
         new HtmlWebpackPlugin({
             template: "./src/index.html",
+            chunks: ["eventfunc", "indexfunc"],
             filename: 'index.html'
         }),
         new HtmlWebpackPlugin({
             template: "./src/chat.html",
+            chunks: ["eventfunc", "chatfunc"],
             filename: 'chat.html'
         }),
         new CopyWebpackPlugin([
