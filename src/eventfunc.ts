@@ -1,9 +1,12 @@
 import * as $ from "jquery"
 
+const btnTitle: HTMLDivElement = document.querySelector("#btnTitle");
 const btnMore : HTMLDivElement = document.querySelector("#btnMore");
 const divMoreMenu: HTMLDivElement = document.querySelector("#divMoreMenu");
 const btnMenuHome: HTMLDivElement = document.querySelector("#btnMenuHome");
 const btnMoreHome: HTMLDivElement = document.querySelector("#btnMoreHome");
+
+btnTitle.addEventListener("click", goToHome);
 
 btnMore.addEventListener("click", toggleMoreMenu);
 
