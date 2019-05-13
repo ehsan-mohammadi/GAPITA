@@ -1,22 +1,49 @@
 import * as signalR from "@aspnet/signalr";
 import * as $ from "Jquery";
 
-/*const divMessage: HTMLDivElement = document.querySelector("#divMessage");
-const tbMessage: HTMLInputElement = document.querySelector("#tbMessage");
-const btnSend: HTMLButtonElement = document.querySelector("#btnSend");
-const username = new Date().getTime();*/
-
 const txtOnlineUsers: HTMLParagraphElement = document.querySelector("#txtOnlineUsers");
 const txtMoreOnlineUsers: HTMLParagraphElement = document.querySelector("#txtMoreOnlineUsers");
 const divLoadingBackground: HTMLDivElement = document.querySelector("#divLoadingBackground");
 const divLoading: HTMLDivElement = document.querySelector("#divLoading");
 const divError: HTMLDivElement = document.querySelector("#divError");
 const divTryAgain: HTMLDivElement = document.querySelector("#divTryAgain");
+const btnBack: HTMLButtonElement = document.querySelector("#btnBack");
+const btnTryAgain: HTMLButtonElement = document.querySelector("#btnTryAgain");
 const divChat: HTMLDivElement = document.querySelector("#divChat");
+const divChatContent: HTMLDivElement = document.querySelector("#divChatContent");
+const btnLeft: HTMLDivElement = document.querySelector("#btnLeft");
+const btnRefresh: HTMLDivElement = document.querySelector("#btnRefresh");
+const divLeft: HTMLDivElement = document.querySelector("#divLeft");
+const divRefresh: HTMLDivElement = document.querySelector("#divRefresh");
+const btnSend: HTMLDivElement = document.querySelector("#btnSend");
+const txtMessage: HTMLTextAreaElement = document.querySelector("#txtMessage");
+const divTyping: HTMLDivElement = document.querySelector("#divTyping");
+
+setInterval(function(){
+    $(divTyping).fadeOut()
+},3000);
+
+btnBack.addEventListener("click", goToHome);
+btnTryAgain.addEventListener("click", refreshChat)
+btnLeft.addEventListener("click", leftChat);
+btnRefresh.addEventListener("click", refreshChat);
+btnSend.addEventListener("click", sendMessage);
+
+txtMessage.addEventListener("keydown",(e : KeyboardEvent) => {
+    if(!e.shiftKey && e.keyCode === 13)
+    {
+        sendMessage();
+        if(event.preventDefault)
+            event.preventDefault();
+
+        return false;
+    }
+});
+
+txtMessage.addEventListener("input", isTyping);
 
 const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/hub/GapitaHub")
-    .build();
+.withUrl("/hub/GapitaHub").build();
 
 connection.start().catch(err => {
     $(divLoading).hide();
@@ -42,58 +69,72 @@ connection.on("getOnlineUsers", (onlineUsersCount: string) => {
 });
 
 connection.on("joinToStranger", (isAloneStranger: boolean) => {
-    console.log(isAloneStranger);
     if(isAloneStranger) {
         $(divLoading).hide();
         $(divError).hide();
         $(divLoadingBackground).hide();
         $(divChat).show();
+
+        divChatContent.innerHTML += `<p class="connect-disconnect-message">You're connected to stranger</p>`;
+        divChatContent.innerHTML += `<p class="connect-disconnect-message">Now type something...</p>`;
+        divChatContent.scrollTop = divChatContent.scrollHeight;
     }
 });
 
-/*connection.on("tryAgain", () => {
-    $(divLoading).hide();
-    $(divTryAgain).show();
-});*/
+connection.on("strangerLeft", () => {
+    divChatContent.innerHTML += `<p class="connect-disconnect-message">Stranger left the chat</p>`;
+    divChatContent.scrollTop = divChatContent.scrollHeight;
+    $(divLeft).hide();
+    $(divRefresh).show();
+    $(txtMessage).prop("disabled", true);
+    btnSend.removeEventListener("click", sendMessage);
 
-/*const onlineUsersConnection = new signalR.HubConnectionBuilder()
-    .withUrl("/hub/OnlineUsersHub")
-    .build();
-
-onlineUsersConnection.start().catch(err => document.write(err));
-
-onlineUsersConnection.on("onlineUsers", (onlineUsersCount: string) => {
-    txtOnlineUsers.innerHTML = `Online users: <span style="font-weight:bold">${onlineUsersCount}</span>`;
-    txtMoreOnlineUsers.innerHTML = `Online users: <span style="font-weight:bold">${onlineUsersCount}</span>`;
-});*/
-
-
-/*connection.on("messageReceived", (username: string, message: string) => {
-    let m = document.createElement("div");
-
-    m.innerHTML =
-        `<div class="message-author">${username}</div><div>${message}</div>`;
-    divMessage.appendChild(m);
-    divMessage.scrollTop = divMessage.scrollHeight;
+    connection.send("deleteRoom");
 });
 
-connection.on("newUser", () => {
-    console.log("New user joined!");
+connection.on("receiveMessage", (message: string) => {
+    divChatContent.innerHTML += `<p class="message-stranger">${message}</p>`;
+    divChatContent.scrollTop = divChatContent.scrollHeight;
 });
 
-connection.on("onlineUsers", (onlineUsersCount: number) => {
-    console.log(onlineUsersCount);
+connection.on("strangerIsTyping", () => {
+    $(divTyping).fadeIn();
 });
 
-tbMessage.addEventListener("keyup", (e: KeyboardEvent) => {
-    if(e.keyCode === 13) {
-        send();
+function leftChat() {
+    divChatContent.innerHTML += `<p class="connect-disconnect-message">You left the chat</p>`;
+    divChatContent.scrollTop = divChatContent.scrollHeight;
+    $(divLeft).hide();
+    $(divRefresh).show();
+    $(txtMessage).prop("disabled", true);
+    btnSend.removeEventListener("click", sendMessage);
+    
+    connection.send("leftChat");
+}
+
+function goToHome() {
+    window.location.replace("/index.html");
+}
+
+function refreshChat() {
+    window.location.replace("/chat.html");
+}
+
+function sendMessage() {
+    let message: string = txtMessage.value.replace(/\n/g, "").replace(/ /g, "");
+
+    if(message !== "") {
+        let refinedMessage: string = txtMessage.value.replace(/\n/g, "<br/>");
+
+        connection.send("sendMessage", refinedMessage)
+        .then(() => {
+            divChatContent.innerHTML += `<p class="message-caller">${refinedMessage}</p>`;
+            divChatContent.scrollTop = divChatContent.scrollHeight;
+            txtMessage.value = "";
+        })
     }
-});
+}
 
-btnSend.addEventListener("click", send);
-
-function send() {
-    connection.send("newMessage", username, tbMessage.value)
-        .then(() => tbMessage.value = "");
-}*/
+function isTyping() {
+    connection.send("isTyping");
+}

@@ -77,6 +77,10 @@ div.title-menu-bar {
     display: flex;
 }
 
+div.title-menu-bar:hover {
+    cursor: pointer;
+}
+
 div.logo-menu-bar {
     width: 40px;
     height: 40px;
@@ -536,6 +540,71 @@ div.chat-content {
     bottom: 60px;
     left: 0px;
     right: 0px;
-    overflow: auto;
+    overflow: hidden auto;
     background-color: #f3f4ef;
+}
+
+p.connect-disconnect-message {
+    width: 250px;
+    height: auto;
+    font-family: 'SegoeUI';
+    font-size:10pt;
+    font-weight:bold;
+    text-align:center;
+    padding: 5px 10px;
+    margin: 10px auto 10px auto;
+    color: white;
+    background-color: #7d7d7d;
+    border-radius: 20px;
+}
+
+p.message-caller {
+    width: fit-content;
+    max-width: 340px;
+    height: auto;
+    font-family: 'SegoeUI';
+    font-size:11pt;
+    font-weight:normal;
+    text-align:left;
+    padding: 15px;
+    margin: 10px 10px 10px auto;
+    color: black;
+    background-color: #ffecd2;
+    border-radius: 20px 20px 0px 20px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ffcd88;
+    overflow: hidden;
+}
+
+p.message-stranger {
+    width: fit-content;
+    max-width: 340px;
+    height: auto;
+    font-family: 'SegoeUI';
+    font-size:11pt;
+    font-weight:normal;
+    text-align:left;
+    padding: 15px;
+    margin: 10px auto 10px 10px;
+    color: black;
+    background-color: #fff;
+    border-radius: 20px 20px 20px 0px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #d6d6d6;
+    overflow: hidden;
+}
+
+p.text-is-typing {
+    width: auto;
+    font-family: 'SegoeUI';
+    font-size: 10pt;
+    font-weight:bold;
+    text-align:left;
+    vertical-align: top;
+    line-height: 40px;
+    margin: auto;
+    display: initial;
+    color:  #000;
 }
