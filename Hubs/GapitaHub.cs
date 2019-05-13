@@ -18,7 +18,14 @@ namespace SignalRWebPack.Hubs
         public override async Task OnDisconnectedAsync(Exception exception)
         {
             if(users.ContainsKey(Context.ConnectionId))
+            {
+                string groupName = users[Context.ConnectionId];
+
+                if(groupName != "-1")
+                    await Clients.Group(groupName).SendAsync("strangerLeft");
+
                 users.Remove(Context.ConnectionId);
+            }
 
             int onlineUsersCount = GetUsersList();
             string onlineUsersStr = onlineUsersCount >= 100000 ? ("+100000") : onlineUsersCount.ToString();
@@ -46,10 +53,11 @@ namespace SignalRWebPack.Hubs
 
             if(aloneStrangerId != null)
                 {
-                    users[aloneStrangerId] = Context.ConnectionId;
-                    users[Context.ConnectionId] = aloneStrangerId;
-
                     string groupName = Context.ConnectionId + aloneStrangerId;
+
+                    users[aloneStrangerId] = groupName;
+                    users[Context.ConnectionId] = groupName;
+
                     await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
                     await Groups.AddToGroupAsync(aloneStrangerId, groupName);
 
@@ -61,9 +69,30 @@ namespace SignalRWebPack.Hubs
                 }
         }
 
-        public async Task NewMessage(string username, string message)
+        public async Task DeleteRoom()
         {
-            await Clients.All.SendAsync("messageReceived", username, message);
+            string groupName = users[Context.ConnectionId];
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupName);
+        }
+
+        public async Task LeftChat()
+        {
+            string groupName = users[Context.ConnectionId];
+
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupName);
+            await Clients.Group(groupName).SendAsync("strangerLeft");
+        }
+
+        public async Task SendMessage(string message)
+        {
+            string groupName = users[Context.ConnectionId];
+            await Clients.OthersInGroup(groupName).SendAsync("receiveMessage", message);
+        }
+
+        public async Task IsTyping()
+        {
+            string groupName = users[Context.ConnectionId];
+            await Clients.OthersInGroup(groupName).SendAsync("strangerIsTyping");
         }
 
         public static int GetUsersList()

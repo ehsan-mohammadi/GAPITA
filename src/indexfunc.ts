@@ -11,11 +11,10 @@ function goToChat() {
 }
 
 const Connection = new signalR.HubConnectionBuilder()
-    .withUrl("/hub/GapitaHub")
-    .build();
+.withUrl("/hub/GapitaHub").build();
 
 Connection.start().catch(err => document.write(err))
-    .then(() => Connection.send("checkOnlineUsers", window.location.href));
+.then(() => Connection.send("checkOnlineUsers", window.location.href));
 
 Connection.on("getOnlineUsers", (onlineUsersCount: string) => {
     txtOnlineUsers.innerHTML = `Online users: <span style="font-weight:bold">${onlineUsersCount}</span>`;

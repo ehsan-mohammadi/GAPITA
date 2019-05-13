@@ -6,31 +6,40 @@
         <title>GAPITA - Chat room</title>
         <link rel="icon" href="src/img/GapitaIcon.ico" type="image/ico" />
         <link href="src/css/loading.css" rel="stylesheet" />
+        <link href="src/css/typing.css" rel="stylesheet" />
         <link href="src/css/style.css" rel="stylesheet" />
     </head>
     <body>
         <div id="divChat" hidden>
-            <div class="chat-content"></div>
+            <div id="divChatContent" class="chat-content"></div>
             <div class="chat-bar">
                 <div class="chat-bar-text-area">
-                    <textarea class="message-text-area" placeholder="Type something..."></textarea>
+                    <textarea id="txtMessage" class="message-text-area" placeholder="Type something..."></textarea>
                 </div>
                 <div class="chat-bar-splitter"></div>
                 <div class="chat-bar-button">
-                    <div class="button-chat ripple">
+                    <div id="btnSend" class="button-chat ripple">
                         <img width="26" height="26" src="/src/img/ImageSend.svg" style="margin-top:12px;" />
                     </div>
                 </div>
-                <div class="chat-bar-button">
-                    <div class="button-chat ripple">
+                <div id="divLeft" class="chat-bar-button">
+                    <div id="btnLeft" class="button-chat ripple">
                         <img width="26" height="26" src="/src/img/ImageBlock.svg" style="margin-top:12px;" />
                     </div>
                 </div>
-                <div class="chat-bar-button" hidden>
-                    <div class="button-chat ripple">
+                <div id="divRefresh" class="chat-bar-button" hidden>
+                    <div id="btnRefresh" class="button-chat ripple">
                         <img width="26" height="26" src="/src/img/ImageRefresh.svg" style="margin-top:12px;" />
                     </div>
                 </div>
+            </div>
+            <div id="divTyping" class="typing" style="display: none;">
+                <div class="spinner-typing">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+                <p class="text-is-typing">Stranger is typing</p>
             </div>
         </div>
 
@@ -44,7 +53,7 @@
             </div>
             <div id="divError" class="loading-content" hidden>
                 <p class="normal-text" style="text-align: center;">An error occurred while connecting to the server :(</p>
-                <button id="btnTryAgain" class="button-round-box ripple" style="margin-top: 10px;">Back</button>
+                <button id="btnBack" class="button-round-box ripple" style="margin-top: 10px;">Back</button>
             </div>
             <div id="divTryAgain" class="loading-content" hidden>
                     <p class="normal-text" style="text-align: center;">Sorry! We couldn't find any stranger :(</p>
@@ -75,7 +84,7 @@
             </div>
         </div>
         <div class="menu-bar">
-            <div class="title-menu-bar">
+            <div id="btnTitle" class="title-menu-bar">
                 <div class="logo-menu-bar"></div>
                 <p class="text-menu-bar">GAPITA</p>
             </div>
