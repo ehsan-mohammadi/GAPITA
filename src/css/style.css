@@ -444,6 +444,19 @@ p.feature-header-text {
     margin-bottom:0px;
 }
 
+@media screen and (max-width: 420px) {
+    div.what-is-image {
+        width:300px;
+        height: 234px;
+
+        background-size: 300px 234px;
+    }
+
+    div.what-is-text, div.features {
+        width: 100%;
+    }
+}
+
 div.footer {
     width: 100%;
     height: auto;
@@ -536,11 +549,13 @@ div.button-chat {
 
 div.chat-content {
     position: fixed;
+    height: auto;
     top: 60px;
     bottom: 60px;
     left: 0px;
     right: 0px;
-    overflow: hidden auto;
+    overflow-x: hidden;
+    overflow-y:  scroll;
     background-color: #f3f4ef;
 }
 
@@ -559,7 +574,7 @@ p.connect-disconnect-message {
 }
 
 p.message-caller {
-    width: fit-content;
+    display: table;
     max-width: 340px;
     height: auto;
     font-family: 'SegoeUI';
@@ -578,7 +593,7 @@ p.message-caller {
 }
 
 p.message-stranger {
-    width: fit-content;
+    display: table;
     max-width: 340px;
     height: auto;
     font-family: 'SegoeUI';

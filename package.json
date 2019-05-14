@@ -22,7 +22,7 @@
     "webpack-cli": "3.2.3"
   },
   "dependencies": {
-    "@aspnet/signalr": "^1.1.4",
+    "@aspnet/signalr": "^3.0.0-preview5-19227-01",
     "jquery": "^3.4.1"
   }
 }
