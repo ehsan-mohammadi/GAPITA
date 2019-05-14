@@ -6,7 +6,7 @@
 
 GAPITA is a free and open source project to talk to strangers and meet new friends. When you use GAPITA, we pick someone else at random and let you talk one-on-one. Our aim is to make your chatting experience as fast, easy and best by using our random text chat, as pleasant, fun and successful as possible.
 
-<p align="center"><img src="https://github.com/ehsan-mohammadi/GAPITA/blob/master/screenshots/GAPITA-image.png" width="120" height="120"/></p>
+<p align="center"><img src="https://github.com/ehsan-mohammadi/GAPITA/blob/master/screenshots/GAPITA-image.png"/></p>
 
 ## GAPITA features
 
