@@ -8,6 +8,7 @@ module.exports = {
         eventfunc: "./src/eventfunc.ts",
         indexfunc: "./src/indexfunc.ts",
         chatfunc: "./src/chatfunc.ts",
+        aboutfunc: "./src/aboutfunc.ts"
     },
     output: {
         path: path.resolve(__dirname, "wwwroot"),
@@ -36,6 +37,11 @@ module.exports = {
             template: "./src/chat.html",
             chunks: ["eventfunc", "chatfunc"],
             filename: 'chat.html'
+        }),
+        new HtmlWebpackPlugin({
+            template: "./src/about.html",
+            chunks: ["eventfunc", "aboutfunc"],
+            filename: 'about.html'
         }),
         new CopyWebpackPlugin([
             {from: "./src/img", to: "./src/img"},

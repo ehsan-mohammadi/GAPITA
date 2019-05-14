@@ -623,3 +623,59 @@ p.text-is-typing {
     display: initial;
     color:  #000;
 }
+
+p.about-header-text {
+    font-family: 'SegoeUI-Light';
+    font-size:20pt;
+    font-weight:lighter;
+    text-align:left;
+    padding: 20px 20px 0px 20px;
+    margin: 0px;
+    color: black;
+}
+
+p.about-normal-text {
+    font-family: 'SegoeUI';
+    font-size:13pt;
+    font-weight:normal;
+    text-align:justify;
+    padding: 0px 20px 20px 20px;
+    margin: 0px;
+    color: black;
+}
+
+div.image-ehsan {
+    display:inline-block;
+    margin-right: 15px;
+    width: 180px;
+    height: 180px;
+    background-image: url("../img/ImageEhsan.jpg");
+    background-size: 180px 180px;
+    border-radius: 100px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #fe9400;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+div.contact {
+    display: block;
+}
+
+div.button-contact {
+    display: inline-block;
+    margin: 5px;
+    width: 40px;
+    height: 40px;
+    background-color: #fe9400;
+    color: white;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: background 0.8s;
+}
