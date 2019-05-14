@@ -1,5 +1,6 @@
 import * as $ from "jquery"
 
+// Initialize
 const btnTitle: HTMLDivElement = document.querySelector("#btnTitle");
 const btnMore : HTMLDivElement = document.querySelector("#btnMore");
 const divMoreMenu: HTMLDivElement = document.querySelector("#divMoreMenu");
@@ -12,6 +13,7 @@ const btnMoreBug: HTMLDivElement = document.querySelector("#btnMoreBug");
 const btnMoreGithub: HTMLDivElement = document.querySelector("#btnMoreGithub");
 const btnMoreAbout: HTMLDivElement = document.querySelector("#btnMoreAbout");
 
+// Add event listener
 btnTitle.addEventListener("click", goToHome);
 
 btnMore.addEventListener("click", toggleMoreMenu);
@@ -25,6 +27,7 @@ btnMoreBug.addEventListener("click", goToIssue);
 btnMoreGithub.addEventListener("click", goToGithub);
 btnMoreAbout.addEventListener("click", goToAbout);
 
+// Click on more menu (When width < 650px)
 function toggleMoreMenu() {
     var opacity: Number = $(divMoreMenu).css('opacity');
 
@@ -34,18 +37,22 @@ function toggleMoreMenu() {
         $(divMoreMenu).animate({ opacity: '0', top: '-300px' });
 }
 
+// Go to home page "index.html"
 function goToHome() {
     window.location.replace("/index.html");
 }
 
+// Go to about page "about.html"
 function goToAbout() {
     window.location.replace("/about.html")
 }
 
+// Go to GAPITA Github issue page
 function goToIssue() {
     window.open("https://github.com/ehsan-mohammadi/GAPITA/issues", "_blank");
 }
 
+// Go to GAPITA Github page
 function goToGithub() {
     window.open("https://github.com/ehsan-mohammadi/GAPITA", "_blank");
 }

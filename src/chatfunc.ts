@@ -1,6 +1,7 @@
 import * as signalR from "@aspnet/signalr";
 import * as $ from "Jquery";
 
+// Initialize
 const txtOnlineUsers: HTMLParagraphElement = document.querySelector("#txtOnlineUsers");
 const txtMoreOnlineUsers: HTMLParagraphElement = document.querySelector("#txtMoreOnlineUsers");
 const divLoadingBackground: HTMLDivElement = document.querySelector("#divLoadingBackground");
@@ -19,10 +20,12 @@ const btnSend: HTMLDivElement = document.querySelector("#btnSend");
 const txtMessage: HTMLTextAreaElement = document.querySelector("#txtMessage");
 const divTyping: HTMLDivElement = document.querySelector("#divTyping");
 
+// Set interval that every 3000 milisecond, hide the typing div
 setInterval(function(){
     $(divTyping).fadeOut()
 },3000);
 
+// Add event listener
 btnBack.addEventListener("click", goToHome);
 btnTryAgain.addEventListener("click", refreshChat)
 btnLeft.addEventListener("click", leftChat);
@@ -42,9 +45,11 @@ txtMessage.addEventListener("keydown",(e : KeyboardEvent) => {
 
 txtMessage.addEventListener("input", isTyping);
 
+// Initialize the SignalR connection
 const connection = new signalR.HubConnectionBuilder()
 .withUrl("/hub/GapitaHub").build();
 
+// Start the connection. After start completed, check the online users and hide loading div and show chat div
 connection.start().catch(err => {
     $(divLoading).hide();
     $(divTryAgain).hide();
@@ -63,11 +68,14 @@ connection.start().catch(err => {
     }, 60000);
 });
 
+// Connection on receive
+// On receive online users
 connection.on("getOnlineUsers", (onlineUsersCount: string) => {
     txtOnlineUsers.innerHTML = `Online users: <span style="font-weight:bold">${onlineUsersCount}</span>`;
     txtMoreOnlineUsers.innerHTML = `Online users: <span style="font-weight:bold">${onlineUsersCount}</span>`;
 });
 
+// On receive join to a stranger
 connection.on("joinToStranger", (isAloneStranger: boolean) => {
     if(isAloneStranger) {
         $(divLoading).hide();
@@ -81,6 +89,7 @@ connection.on("joinToStranger", (isAloneStranger: boolean) => {
     }
 });
 
+// On stranger left the chat
 connection.on("strangerLeft", () => {
     divChatContent.innerHTML += `<p class="connect-disconnect-message">Stranger left the chat</p>`;
     divChatContent.scrollTop = divChatContent.scrollHeight;
@@ -92,15 +101,18 @@ connection.on("strangerLeft", () => {
     connection.send("deleteRoom");
 });
 
+// On receive a message form the stranger
 connection.on("receiveMessage", (message: string) => {
     divChatContent.innerHTML += `<p class="message-stranger">${message}</p>`;
     divChatContent.scrollTop = divChatContent.scrollHeight;
 });
 
+// On stranger is typing
 connection.on("strangerIsTyping", () => {
     $(divTyping).fadeIn();
 });
 
+// Disable btnSend and txtMessage
 function leftChat() {
     divChatContent.innerHTML += `<p class="connect-disconnect-message">You left the chat</p>`;
     divChatContent.scrollTop = divChatContent.scrollHeight;
@@ -112,14 +124,17 @@ function leftChat() {
     connection.send("leftChat");
 }
 
+// Go to home page "index.html"
 function goToHome() {
     window.location.replace("/index.html");
 }
 
+// Refresh the chat page
 function refreshChat() {
     window.location.replace("/chat.html");
 }
 
+// When click on btnSend, a message sends to SignalR hub and then sends to the stranger
 function sendMessage() {
     let message: string = txtMessage.value.replace(/\n/g, "").replace(/ /g, "");
 
@@ -135,6 +150,7 @@ function sendMessage() {
     }
 }
 
+// When user typing, a message sends to SignalR hub and then sends to the stranger to found out typing
 function isTyping() {
     connection.send("isTyping");
 }
