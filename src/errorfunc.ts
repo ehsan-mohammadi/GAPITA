@@ -1,12 +1,12 @@
 import * as signalR from "@aspnet/signalr";
 
 // Initialize
-const btnStart: HTMLButtonElement = document.querySelector("#btnStart");
 const txtOnlineUsers: HTMLParagraphElement = document.querySelector("#txtOnlineUsers");
 const txtMoreOnlineUsers: HTMLParagraphElement = document.querySelector("#txtMoreOnlineUsers");
+const btnBack: HTMLButtonElement = document.querySelector("#btnBack");
 
 // Add event listener
-btnStart.addEventListener("click", goToChat);
+btnBack.addEventListener("click", goToHome);
 
 // Initialize the SignalR connection
 const Connection = new signalR.HubConnectionBuilder()
@@ -23,7 +23,7 @@ Connection.on("getOnlineUsers", (onlineUsersCount: string) => {
     txtMoreOnlineUsers.innerHTML = `Online users: <span style="font-weight:bold">${onlineUsersCount}</span>`;
 });
 
-// Go to chat page "chat.html"
-function goToChat() {
-    window.location.replace("/chat.html");
+// Go to home page "index.html"
+function goToHome() {
+    window.location.replace("/index.html");
 }

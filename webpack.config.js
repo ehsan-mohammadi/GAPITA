@@ -8,7 +8,8 @@ module.exports = {
         eventfunc: "./src/eventfunc.ts",
         indexfunc: "./src/indexfunc.ts",
         chatfunc: "./src/chatfunc.ts",
-        aboutfunc: "./src/aboutfunc.ts"
+        aboutfunc: "./src/aboutfunc.ts",
+        errorfunc: "./src/errorfunc.ts"
     },
     output: {
         path: path.resolve(__dirname, "wwwroot"),
@@ -42,6 +43,11 @@ module.exports = {
             template: "./src/about.html",
             chunks: ["eventfunc", "aboutfunc"],
             filename: 'about.html'
+        }),
+        new HtmlWebpackPlugin({
+            template: "./src/error.html",
+            chunks: ["eventfunc", "errorfunc"],
+            filename: 'error.html'
         }),
         new CopyWebpackPlugin([
             {from: "./src/img", to: "./src/img"},
