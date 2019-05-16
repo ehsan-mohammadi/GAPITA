@@ -2,6 +2,8 @@
 
 > An anonymous and random chat messaging for talking to strangers! (Using SignalR C# and TypeScript)
 
+[![GAPITA license](https://img.shields.io/github/license/ehsan-mohammadi/GAPITA.svg?color=%23fe9400&label=GAPITA%20license)](../master/LICENSE)
+
 <img src="https://github.com/ehsan-mohammadi/GAPITA/blob/master/src/img/GapitaLogo.png" width="120" height="120"/>
 
 GAPITA is a free and open source project to talk to strangers and meet new friends. When you use GAPITA, we pick someone else at random and let you talk one-on-one. Our aim is to make your chatting experience as fast, easy and best by using our random text chat, as pleasant, fun and successful as possible.
