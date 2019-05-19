@@ -19,11 +19,26 @@ const divRefresh: HTMLDivElement = document.querySelector("#divRefresh");
 const btnSend: HTMLDivElement = document.querySelector("#btnSend");
 const txtMessage: HTMLTextAreaElement = document.querySelector("#txtMessage");
 const divTyping: HTMLDivElement = document.querySelector("#divTyping");
+const soundMessageAppear: HTMLAudioElement = document.querySelector("#soundMessageAppear");
+const soundMessageNotification: HTMLAudioElement = document.querySelector("#soundMessageNotification");
+
+var isMainTitle = true;
+var isFocused = true;
+var alertInterval = null;
 
 // Set interval that every 3000 milisecond, hide the typing div
 setInterval(function(){
     $(divTyping).fadeOut()
 },3000);
+
+// Check that you focus on the GAPITA tab or not
+onVisibilityChange(function(visible) {
+    isFocused = visible;
+    if(isFocused) {
+        document.title = "GAPITA - Chat room";
+        clearInterval(alertInterval);
+    }
+});
 
 // Add event listener
 btnBack.addEventListener("click", goToHome);
@@ -105,6 +120,16 @@ connection.on("strangerLeft", () => {
 connection.on("receiveMessage", (message: string) => {
     divChatContent.innerHTML += `<p class="message-stranger">${message}</p>`;
     divChatContent.scrollTop = divChatContent.scrollHeight;
+
+    // Play message notification sound and change the tab title
+    if(!isFocused) {
+        soundMessageNotification.play();
+        clearInterval(alertInterval);
+        alertInterval = setInterval(alertTitleNewMessage, 700);
+    }
+    else {
+        soundMessageAppear.play();
+    }
 });
 
 // On stranger is typing
@@ -146,6 +171,9 @@ function sendMessage() {
             divChatContent.innerHTML += `<p class="message-caller">${refinedMessage}</p>`;
             divChatContent.scrollTop = divChatContent.scrollHeight;
             txtMessage.value = "";
+
+            // Play message appear sound
+            soundMessageAppear.play();
         })
     }
 }
@@ -153,4 +181,41 @@ function sendMessage() {
 // When user typing, a message sends to SignalR hub and then sends to the stranger to found out typing
 function isTyping() {
     connection.send("isTyping");
+}
+
+// Check you focus on GAPITA tab or not
+function onVisibilityChange(callback) {
+    var visible = true;
+
+    if (!callback) {
+        throw new Error('no callback given');
+    }
+
+    function focused() {
+        if (!visible) {
+            callback(visible = true);
+        }
+    }
+
+    function unfocused() {
+        if (visible) {
+            callback(visible = false);
+        }
+    }
+
+    // Standards foccus
+    if ('hidden' in document) {
+        document.addEventListener('visibilitychange',
+            function() {(document.hidden ? unfocused : focused)()});
+    } else {
+        // All others
+        window.onpageshow = window.onfocus = focused;
+        window.onpagehide = window.onblur = unfocused;
+    }
+};
+
+// Change the tab title when receive new message and you don't focus on tab
+function alertTitleNewMessage() {
+    isMainTitle = !isMainTitle;
+    document.title = isMainTitle ? "GAPITA - Chat room" : "New Message!";
 }
