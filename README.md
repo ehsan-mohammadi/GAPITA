@@ -26,7 +26,7 @@ GAPITA is a free and open source project to talk to strangers and meet new frien
 
 If you just want to use GAPITA, visit the site:
 
-[http://www.gapita.giloy.ir](http://www.gapita.giloy.ir)
+[http://www.gapita.me](http://www.gapita.me)
 
 But if you want to get the source and compile it locally, follow these steps:
 
