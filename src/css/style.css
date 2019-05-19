@@ -519,7 +519,7 @@ textarea.message-text-area {
     border-radius: 10px;
     border: 1px solid #ccc;
     padding: 5px;
-    text-align: left;
+    text-align: start;
     font-family: 'SegoeUI';
     font-size:12pt;
     font-weight: normal;
@@ -580,7 +580,7 @@ p.message-caller {
     font-family: 'SegoeUI';
     font-size:11pt;
     font-weight:normal;
-    text-align:left;
+    text-align:start;
     padding: 15px;
     margin: 10px 10px 10px auto;
     color: black;
@@ -599,7 +599,7 @@ p.message-stranger {
     font-family: 'SegoeUI';
     font-size:11pt;
     font-weight:normal;
-    text-align:left;
+    text-align:start;
     padding: 15px;
     margin: 10px auto 10px 10px;
     color: black;
