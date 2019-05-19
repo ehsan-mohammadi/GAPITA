@@ -118,7 +118,7 @@ connection.on("strangerLeft", () => {
 
 // On receive a message form the stranger
 connection.on("receiveMessage", (message: string) => {
-    divChatContent.innerHTML += `<p class="message-stranger">${message}</p>`;
+    divChatContent.innerHTML += `<p dir="auto" class="message-stranger">${message}</p>`;
     divChatContent.scrollTop = divChatContent.scrollHeight;
 
     // Play message notification sound and change the tab title
@@ -168,7 +168,7 @@ function sendMessage() {
 
         connection.send("sendMessage", refinedMessage)
         .then(() => {
-            divChatContent.innerHTML += `<p class="message-caller">${refinedMessage}</p>`;
+            divChatContent.innerHTML += `<p dir="auto" class="message-caller">${refinedMessage}</p>`;
             divChatContent.scrollTop = divChatContent.scrollHeight;
             txtMessage.value = "";
 
