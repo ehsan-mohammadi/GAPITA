@@ -52,7 +52,8 @@ module.exports = {
         new CopyWebpackPlugin([
             {from: "./src/img", to: "./src/img"},
             {from: "./src/fonts", to: "./src/fonts"},
-            {from: "./src/css", to: "./src/css"}
+            {from: "./src/css", to: "./src/css"},
+            {from: "./src/sounds", to:"./src/sounds"}
         ])
     ]
 };
