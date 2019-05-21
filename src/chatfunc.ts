@@ -19,6 +19,9 @@ const divRefresh: HTMLDivElement = document.querySelector("#divRefresh");
 const btnSend: HTMLDivElement = document.querySelector("#btnSend");
 const txtMessage: HTMLTextAreaElement = document.querySelector("#txtMessage");
 const divTyping: HTMLDivElement = document.querySelector("#divTyping");
+const btnLeaveYes: HTMLButtonElement = document.querySelector("#btnLeaveYes");
+const btnLeaveNo: HTMLButtonElement = document.querySelector("#btnLeaveNo");
+const divLeaveConfirmationBackground: HTMLDivElement = document.querySelector("#divLeaveConfirmationBackground");
 const soundMessageAppear: HTMLAudioElement = document.querySelector("#soundMessageAppear");
 const soundMessageNotification: HTMLAudioElement = document.querySelector("#soundMessageNotification");
 
@@ -43,9 +46,11 @@ onVisibilityChange(function(visible) {
 // Add event listener
 btnBack.addEventListener("click", goToHome);
 btnTryAgain.addEventListener("click", refreshChat)
-btnLeft.addEventListener("click", leftChat);
+btnLeft.addEventListener("click", (e: Event) => {leaveConfirmationDialog(true)});
 btnRefresh.addEventListener("click", refreshChat);
 btnSend.addEventListener("click", sendMessage);
+btnLeaveYes.addEventListener("click", leftChat);
+btnLeaveNo.addEventListener("click", (e: Event) => leaveConfirmationDialog(false));
 
 txtMessage.addEventListener("keydown",(e : KeyboardEvent) => {
     if(!e.shiftKey && e.keyCode === 13)
@@ -137,6 +142,13 @@ connection.on("strangerIsTyping", () => {
     $(divTyping).fadeIn();
 });
 
+function leaveConfirmationDialog(state: boolean) {
+    if(state)
+        $(divLeaveConfirmationBackground).show();
+    else
+        $(divLeaveConfirmationBackground).hide();
+}
+
 // Disable btnSend and txtMessage
 function leftChat() {
     divChatContent.innerHTML += `<p class="connect-disconnect-message">You left the chat</p>`;
@@ -144,6 +156,7 @@ function leftChat() {
     $(divLeft).hide();
     $(divRefresh).show();
     $(txtMessage).prop("disabled", true);
+    $(divLeaveConfirmationBackground).hide();
     btnSend.removeEventListener("click", sendMessage);
     
     connection.send("leftChat");
