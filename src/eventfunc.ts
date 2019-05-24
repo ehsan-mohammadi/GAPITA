@@ -27,6 +27,15 @@ btnMoreBug.addEventListener("click", goToIssue);
 btnMoreGithub.addEventListener("click", goToGithub);
 btnMoreAbout.addEventListener("click", goToAbout);
 
+// More menu hide if you click out of it
+$(document).mousedown(function(e){
+    var moreMenuContainer = $(divMoreMenu);
+    if (moreMenuContainer.css("opacity") == 1 && !moreMenuContainer.is(e.target) && moreMenuContainer.has(e.target).length === 0) 
+    {
+        toggleMoreMenu();
+    }
+});
+
 // Click on more menu (When width < 650px)
 function toggleMoreMenu() {
     var opacity: Number = $(divMoreMenu).css('opacity');

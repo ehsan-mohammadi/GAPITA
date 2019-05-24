@@ -37,8 +37,27 @@ var alertInterval = null;
 var emojisGroupBottom = divEmojisGroupBottom.children;
 var emojisGroupTop = divEmojisGroupTop.children;
 
-for(let i: number = 0; i < emojisGroupBottom.length; i++)
-    emojisGroupBottom[i].addEventListener("click", (e: Event) => setEmojiButtonToGroup(i))
+for(let i: number = 0; i < emojisGroupBottom.length; i++) {
+    // Initialize each emojis group - When click on each, show the emojis group
+    emojisGroupBottom[i].addEventListener("click", (e: Event) => setEmojiButtonToGroup(i));
+
+    // Initialize each emoji - When click on each, print the related emoji on txtMessage
+    var emojiGroupTopInsideEmoji = emojisGroupTop[i].children;
+    for(let j: number = 0; j < emojiGroupTopInsideEmoji.length; j++) {
+        $(emojiGroupTopInsideEmoji[j]).addClass("emoji-button");
+        let strContent: string = emojiGroupTopInsideEmoji[j].textContent;
+        emojiGroupTopInsideEmoji[j].addEventListener("click", (e: Event) => insertAtCaret(strContent));
+    }
+}
+
+// Emoji menu hide if you click out of it
+$(document).mousedown(function(e){
+    var emojiMenuContainer = $(divEmojisMenu);
+    if (emojiMenuContainer.css("opacity") == 1 && !emojiMenuContainer.is(e.target) && emojiMenuContainer.has(e.target).length === 0) 
+    {
+        toggleEmojis();
+    }
+});
 
 // Set interval that every 3000 milisecond, hide the typing div
 setInterval(function(){
@@ -131,6 +150,13 @@ connection.on("strangerLeft", () => {
     $(divRefresh).show();
     $(txtMessage).prop("disabled", true);
     btnSend.removeEventListener("click", sendMessage);
+    $(btnSend).removeClass("ripple");
+    $(btnSend).css("background-color","#fe940073");
+    $(btnSend).css("cursor","default");
+    $(divEmojisMenu).hide();
+    btnEmojis.removeEventListener("click", toggleEmojis);
+    $(btnEmojis).css("background-color","rgb(235, 235, 228)");
+    $(btnEmojis).css("cursor","default");
 
     connection.send("deleteRoom");
 });
@@ -174,7 +200,7 @@ function setEmojiButtonToGroup(index: number) {
     
     // Show the selected emojis group and set tje gray background to selected emojis button
     $(emojisGroupTop[index]).css("display", "grid");
-    $(emojisGroupBottom[index]).css("background-color", "#ccc");
+    $(emojisGroupBottom[index]).css("background-color", "#ddd");
 }
 
 // Change emoji button border style when focus on txtMessage
@@ -203,6 +229,13 @@ function leftChat() {
     $(txtMessage).prop("disabled", true);
     $(divLeaveConfirmationBackground).hide();
     btnSend.removeEventListener("click", sendMessage);
+    $(btnSend).removeClass("ripple");
+    $(btnSend).css("background-color","#fe940073");
+    $(btnSend).css("cursor","default");
+    $(divEmojisMenu).hide();
+    btnEmojis.removeEventListener("click", toggleEmojis);
+    $(btnEmojis).css("background-color","rgb(235, 235, 228)");
+    $(btnEmojis).css("cursor","default");
     
     connection.send("leftChat");
 }
@@ -240,6 +273,42 @@ function sendMessage() {
 function isTyping() {
     connection.send("isTyping");
 }
+
+// Add text in the current position of txtMessage cursor
+function insertAtCaret(text) {
+    const doc = document as any;
+  
+    var scrollPos = txtMessage.scrollTop;
+    var strPos = 0;
+    var br = ((txtMessage.selectionStart || txtMessage.selectionStart == 0) ?
+      "ff" : (doc.selection ? "ie" : false));
+    if (br == "ie") {
+        txtMessage.focus();
+      var range = doc.selection.createRange();
+      range.moveStart('character', -txtMessage.value.length);
+      strPos = range.text.length;
+    } else if (br == "ff") {
+      strPos = txtMessage.selectionStart;
+    }
+  
+    var front = (txtMessage.value).substring(0, strPos);
+    var back = (txtMessage.value).substring(strPos, txtMessage.value.length);
+    txtMessage.value = front + text + back;
+    strPos = strPos + text.length;
+    if (br == "ie") {
+        txtMessage.focus();
+        var ieRange = doc.selection.createRange();
+        ieRange.moveStart('character', -txtMessage.value.length);
+        ieRange.moveStart('character', strPos);
+        ieRange.moveEnd('character', 0);
+        ieRange.select();
+    } else if (br == "ff") {
+        txtMessage.selectionStart = strPos;
+        txtMessage.selectionEnd = strPos;
+        txtMessage.focus();
+    }
+    txtMessage.scrollTop = scrollPos;
+  }
 
 // Check you focus on GAPITA tab or not
 function onVisibilityChange(callback) {
