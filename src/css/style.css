@@ -537,6 +537,7 @@ div.emojis-button {
     width: 40px;
     height: 52px;
     border-radius: 0px 10px 10px 0px;
+    background-color: #fff;
     border: 1px solid #ccc;
     border-style: solid solid solid none;
     cursor: pointer;
@@ -591,6 +592,16 @@ div.emoji-grid-group {
     overflow-y: scroll;
     padding: 5px;
     font-size: 15pt;
+}
+
+a.emoji-button {
+    background-color: #fff;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+a.emoji-button:hover {
+    background-color: #ddd;
 }
 
 div.button-chat {
