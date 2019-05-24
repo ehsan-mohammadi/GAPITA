@@ -10,6 +10,9 @@ const divError: HTMLDivElement = document.querySelector("#divError");
 const divTryAgain: HTMLDivElement = document.querySelector("#divTryAgain");
 const btnBack: HTMLButtonElement = document.querySelector("#btnBack");
 const btnTryAgain: HTMLButtonElement = document.querySelector("#btnTryAgain");
+const divEmojisMenu: HTMLDivElement = document.querySelector("#divEmojisMenu");
+const divEmojisGroupBottom: HTMLDivElement = document.querySelector("#divEmojisGroupBottom");
+const divEmojisGroupTop: HTMLDivElement = document.querySelector("#divEmojisGroupTop");
 const divChat: HTMLDivElement = document.querySelector("#divChat");
 const divChatContent: HTMLDivElement = document.querySelector("#divChatContent");
 const btnLeft: HTMLDivElement = document.querySelector("#btnLeft");
@@ -29,6 +32,13 @@ const soundMessageNotification: HTMLAudioElement = document.querySelector("#soun
 var isMainTitle = true;
 var isFocused = true;
 var alertInterval = null;
+
+// Initialize emojis - Set each emoji group in bottom of emoji menu to it's group in top part of emoji menu
+var emojisGroupBottom = divEmojisGroupBottom.children;
+var emojisGroupTop = divEmojisGroupTop.children;
+
+for(let i: number = 0; i < emojisGroupBottom.length; i++)
+    emojisGroupBottom[i].addEventListener("click", (e: Event) => setEmojiButtonToGroup(i))
 
 // Set interval that every 3000 milisecond, hide the typing div
 setInterval(function(){
@@ -50,6 +60,7 @@ btnTryAgain.addEventListener("click", refreshChat)
 btnLeft.addEventListener("click", (e: Event) => {leaveConfirmationDialog(true)});
 btnRefresh.addEventListener("click", refreshChat);
 btnSend.addEventListener("click", sendMessage);
+btnEmojis.addEventListener("click", toggleEmojis);
 btnLeaveYes.addEventListener("click", leftChat);
 btnLeaveNo.addEventListener("click", (e: Event) => leaveConfirmationDialog(false));
 
@@ -153,12 +164,34 @@ function leaveConfirmationDialog(state: boolean) {
         $(divLeaveConfirmationBackground).hide();
 }
 
+// Set each emoji button of the bottom part to it's group on the top part of emoji menu
+function setEmojiButtonToGroup(index: number) {
+    // Hide all emojis group and remove gray background from emojis button
+    for(let i : number = 0; i < emojisGroupTop.length; i++) {
+        $(emojisGroupTop[i]).css("display", "none");
+        $(emojisGroupBottom[i]).css("background-color", "#fff");
+    }
+    
+    // Show the selected emojis group and set tje gray background to selected emojis button
+    $(emojisGroupTop[index]).css("display", "grid");
+    $(emojisGroupBottom[index]).css("background-color", "#ccc");
+}
+
 // Change emoji button border style when focus on txtMessage
 function focusOnTxtMessage(state: boolean) {
     if(state)
         $(btnEmojis).css("border-color", "#fe9400");
     else
         $(btnEmojis).css("border-color", "#ccc");
+}
+
+function toggleEmojis() {
+    var opacity: Number = $(divEmojisMenu).css('opacity');
+
+    if(opacity == 0)
+        $(divEmojisMenu).animate({ opacity: '1', bottom: '70px' });
+    else if(opacity == 1)
+        $(divEmojisMenu).animate({ opacity: '0', bottom: '-230px' });
 }
 
 // Disable btnSend and txtMessage
