@@ -18,6 +18,7 @@ const divLeft: HTMLDivElement = document.querySelector("#divLeft");
 const divRefresh: HTMLDivElement = document.querySelector("#divRefresh");
 const btnSend: HTMLDivElement = document.querySelector("#btnSend");
 const txtMessage: HTMLTextAreaElement = document.querySelector("#txtMessage");
+const btnEmojis: HTMLDivElement = document.querySelector("#btnEmojis");
 const divTyping: HTMLDivElement = document.querySelector("#divTyping");
 const btnLeaveYes: HTMLButtonElement = document.querySelector("#btnLeaveYes");
 const btnLeaveNo: HTMLButtonElement = document.querySelector("#btnLeaveNo");
@@ -52,6 +53,8 @@ btnSend.addEventListener("click", sendMessage);
 btnLeaveYes.addEventListener("click", leftChat);
 btnLeaveNo.addEventListener("click", (e: Event) => leaveConfirmationDialog(false));
 
+txtMessage.addEventListener("focus", (e: Event) => focusOnTxtMessage(true));
+txtMessage.addEventListener("blur", (e: Event) => focusOnTxtMessage(false));
 txtMessage.addEventListener("keydown",(e : KeyboardEvent) => {
     if(!e.shiftKey && e.keyCode === 13)
     {
@@ -142,11 +145,20 @@ connection.on("strangerIsTyping", () => {
     $(divTyping).fadeIn();
 });
 
+// Show/Hide leave confirmation dialog
 function leaveConfirmationDialog(state: boolean) {
     if(state)
         $(divLeaveConfirmationBackground).show();
     else
         $(divLeaveConfirmationBackground).hide();
+}
+
+// Change emoji button border style when focus on txtMessage
+function focusOnTxtMessage(state: boolean) {
+    if(state)
+        $(btnEmojis).css("border-color", "#fe9400");
+    else
+        $(btnEmojis).css("border-color", "#ccc");
 }
 
 // Disable btnSend and txtMessage

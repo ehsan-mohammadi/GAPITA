@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@aspnet/signalr": "^3.0.0-preview5-19227-01",
+    "emojionearea": "^3.0.0",
     "jquery": "^3.4.1"
   }
 }
