@@ -151,7 +151,7 @@ connection.on("strangerLeft", () => {
     $(txtMessage).prop("disabled", true);
     btnSend.removeEventListener("click", sendMessage);
     $(btnSend).removeClass("ripple");
-    $(btnSend).css("background-color","#fe940073");
+    $(btnSend).css("background-color","rgba(254, 148, 0, 0.45)");
     $(btnSend).css("cursor","default");
     $(divEmojisMenu).hide();
     btnEmojis.removeEventListener("click", toggleEmojis);
@@ -230,7 +230,7 @@ function leftChat() {
     $(divLeaveConfirmationBackground).hide();
     btnSend.removeEventListener("click", sendMessage);
     $(btnSend).removeClass("ripple");
-    $(btnSend).css("background-color","#fe940073");
+    $(btnSend).css("background-color","rgba(254, 148, 0, 0.45)");
     $(btnSend).css("cursor","default");
     $(divEmojisMenu).hide();
     btnEmojis.removeEventListener("click", toggleEmojis);
