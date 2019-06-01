@@ -500,6 +500,7 @@ div.chat-bar {
 
 div.chat-bar-text-area {
     flex: 1;
+    display: flex;
 }
 
 div.chat-bar-button {
@@ -525,7 +526,7 @@ textarea.message-text-area {
     font-weight: normal;
     text-decoration: none;
     resize: none;
-    margin: 3px 0px 0px 3px;
+    margin: 0px 0px 0px 3px;
 }
 
 textarea.message-text-area:focus {
@@ -702,7 +703,7 @@ div.leave-confirmation-background {
     left: 0px;
     right: 0px;
     padding: 10px;
-    background-color: #000000aa;
+    background-color: rgba(0,0,0, 0.7);
 }
 
 div.leave-confirmation-content {
