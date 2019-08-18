@@ -10,7 +10,7 @@
   font-family: 'SegoeUI';
   src: url('../fonts/SegoeUI.woff') format('woff'),
        url('../fonts/SegoeUI.ttf') format('truetype'),
-       url('../fonts/SegoeUI.svg#DastNevis') format('svg');
+       url('../fonts/SegoeUI.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -27,7 +27,7 @@
   font-family: 'SegoeUI-Light';
   src: url('../fonts/SegoeUI-Light.woff') format('woff'),
        url('../fonts/SegoeUI-Light.ttf') format('truetype'),
-       url('../fonts/SegoeUI-Light.svg#DastNevis') format('svg');
+       url('../fonts/SegoeUI-Light.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -44,7 +44,7 @@
   font-family: 'SegoeUI-Bold';
   src: url('../fonts/SegoeUI-Bold.woff') format('woff'),
        url('../fonts/SegoeUI-Bold.ttf') format('truetype'),
-       url('../fonts/SegoeUI-Bold.svg#DastNevis') format('svg');
+       url('../fonts/SegoeUI-Bold.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
