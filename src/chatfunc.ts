@@ -163,7 +163,12 @@ connection.on("strangerLeft", () => {
 
 // On receive a message form the stranger
 connection.on("receiveMessage", (message: string) => {
-    divChatContent.innerHTML += `<p dir="auto" class="message-stranger">${message}</p>`;
+    let pMesssage = document.createElement("P");
+    pMesssage.className = "message-stranger";
+    pMesssage.style.cssText = "dir=\"auto\"";
+    pMesssage.innerText = message;
+
+    divChatContent.appendChild(pMesssage);
     divChatContent.scrollTop = divChatContent.scrollHeight;
 
     // Play message notification sound and change the tab title
@@ -259,7 +264,12 @@ function sendMessage() {
 
         connection.send("sendMessage", refinedMessage)
         .then(() => {
-            divChatContent.innerHTML += `<p dir="auto" class="message-caller">${refinedMessage}</p>`;
+            let pMesssage = document.createElement("P");
+            pMesssage.className = "message-caller";
+            pMesssage.style.cssText = "dir=\"auto\"";
+            pMesssage.innerText = refinedMessage;
+
+            divChatContent.appendChild(pMesssage);
             divChatContent.scrollTop = divChatContent.scrollHeight;
             txtMessage.value = "";
 
