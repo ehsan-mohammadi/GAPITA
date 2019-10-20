@@ -165,7 +165,7 @@ connection.on("strangerLeft", () => {
 connection.on("receiveMessage", (message: string) => {
     let pMesssage = document.createElement("P");
     pMesssage.className = "message-stranger";
-    pMesssage.style.cssText = "dir=\"auto\"";
+    pMesssage.dir = "auto";
     pMesssage.innerText = message;
 
     divChatContent.appendChild(pMesssage);
@@ -260,13 +260,13 @@ function sendMessage() {
     let message: string = txtMessage.value.replace(/\n/g, "").replace(/ /g, "");
 
     if(message !== "") {
-        let refinedMessage: string = txtMessage.value.replace(/\n/g, "<br/>");
+        let refinedMessage: string = txtMessage.value;
 
         connection.send("sendMessage", refinedMessage)
         .then(() => {
             let pMesssage = document.createElement("P");
             pMesssage.className = "message-caller";
-            pMesssage.style.cssText = "dir=\"auto\"";
+            pMesssage.dir = "auto";
             pMesssage.innerText = refinedMessage;
 
             divChatContent.appendChild(pMesssage);
