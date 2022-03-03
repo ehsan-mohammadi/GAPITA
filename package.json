@@ -1,6 +1,6 @@
 {
   "name": "Gapita",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "description": "An anonymous and random chat messaging for talking to strangers",
   "main": "index.js",

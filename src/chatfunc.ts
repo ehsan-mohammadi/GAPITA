@@ -1,5 +1,5 @@
 import * as signalR from "@aspnet/signalr";
-import * as $ from "Jquery";
+import * as $ from "jquery";
 
 // Initialize
 const txtOnlineUsers: HTMLParagraphElement = document.querySelector("#txtOnlineUsers");
