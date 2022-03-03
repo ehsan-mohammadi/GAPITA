@@ -29,10 +29,11 @@ namespace Gapita
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.UseRouting(); 
 
-            app.UseSignalR(options =>
+            app.UseEndpoints(endpoints =>
             {
-                options.MapHub<GapitaHub>("/hub/GapitaHub");
+                endpoints.MapHub<GapitaHub>("/hub/GapitaHub");
             });
         }
     }
