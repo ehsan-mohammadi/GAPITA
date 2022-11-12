@@ -19,7 +19,7 @@
     "ts-loader": "5.3.3",
     "typescript": "3.3.3",
     "webpack": "4.29.3",
-    "webpack-cli": "3.2.3"
+    "webpack-cli": "3.3.12"
   },
   "dependencies": {
     "@aspnet/signalr": "^3.0.0-preview5-19227-01",
