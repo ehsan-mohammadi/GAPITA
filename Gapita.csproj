@@ -6,4 +6,63 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\about.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\aboutfunc.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\chat.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\chatfunc.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\chatfunc.js.LICENSE.txt" />
+    <_ContentIncludedByDefault Remove="wwwroot\error.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\errorfunc.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\eventfunc.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\eventfunc.js.LICENSE.txt" />
+    <_ContentIncludedByDefault Remove="wwwroot\index.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\indexfunc.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\css\loading.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\css\style.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\css\typing.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\fonts\SegoeUI-Bold.eot" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\fonts\SegoeUI-Bold.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\fonts\SegoeUI-Bold.ttf" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\fonts\SegoeUI-Bold.woff" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\fonts\SegoeUI-Bold.woff2" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\fonts\SegoeUI-Light.eot" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\fonts\SegoeUI-Light.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\fonts\SegoeUI-Light.ttf" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\fonts\SegoeUI-Light.woff" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\fonts\SegoeUI-Light.woff2" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\fonts\SegoeUI.eot" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\fonts\SegoeUI.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\fonts\SegoeUI.ttf" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\fonts\SegoeUI.woff" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\fonts\SegoeUI.woff2" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\img\GapitaIcon.ico" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\img\GapitaLogo.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\img\GapitaSocialNetwork.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\img\ImageAboutEmail.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\img\ImageAboutGithub.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\img\ImageAboutLinkedin.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\img\ImageAboutTwitter.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\img\ImageBlock.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\img\ImageBug.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\img\ImageCamera.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\img\ImageDollar.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\img\ImageEarth.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\img\ImageEmoji.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\img\ImageGithub.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\img\ImageHome.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\img\ImageInformation.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\img\ImageLock.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\img\ImageMore.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\img\ImageOnlineUsers.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\img\ImagePlatforms.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\img\ImageRefresh.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\img\ImageSend.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\img\ImageSimplicity.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\sounds\SoundMessageAppear.mp3" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\sounds\SoundMessageAppear.ogg" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\sounds\SoundMessageNotification.mp3" />
+    <_ContentIncludedByDefault Remove="wwwroot\src\sounds\SoundMessageNotification.ogg" />
+  </ItemGroup>
+
 </Project>

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>GAPITA - Chat room</title>
+        <title>TLU - Chat với người lạ</title>
         <link rel="icon" href="src/img/GapitaIcon.ico" type="image/ico" />
         <link href="src/css/loading.css" rel="stylesheet" />
         <link href="src/css/typing.css" rel="stylesheet" />
@@ -50,7 +50,7 @@
             </div>
             <div class="chat-bar">
                 <div class="chat-bar-text-area">
-                    <textarea id="txtMessage" dir="auto" class="message-text-area" placeholder="Type something..."></textarea>
+                    <textarea id="txtMessage" dir="auto" class="message-text-area" placeholder="Nói gì đi..."></textarea>
                     <div id="btnEmojis" class="emojis-button">
                         <img width="26" height="26" src="/src/img/ImageEmoji.svg" style="margin-top:12px;" />
                     </div>
@@ -78,7 +78,7 @@
                     <div class="bounce2"></div>
                     <div class="bounce3"></div>
                 </div>
-                <p class="text-is-typing">Stranger is typing</p>
+                <p class="text-is-typing">Đối phương đang gõ</p>
             </div>
         </div>
 
@@ -88,81 +88,45 @@
                         <div class="double-bounce1"></div>
                         <div class="double-bounce2"></div>
                     </div>
-                    <p class="normal-text" style="text-align: center;">Please wait to find a stranger...</p>
+                    <p class="normal-text" style="text-align: center;">Đang tìm kiếm đối...</p>
             </div>
             <div id="divError" class="loading-content" hidden>
-                <p class="normal-text" style="text-align: center;">An error occurred while connecting to the server :(</p>
-                <button id="btnBack" class="button-round-box ripple" style="margin-top: 10px;">Back</button>
+                <p class="normal-text" style="text-align: center;">Lỗi kết nối với máy chủ :(</p>
+                <button id="btnBack" class="button-round-box ripple" style="margin-top: 10px;">Trở về</button>
             </div>
             <div id="divTryAgain" class="loading-content" hidden>
-                    <p class="normal-text" style="text-align: center;">Sorry! We couldn't find any stranger :(</p>
-                    <button id="btnTryAgain" class="button-round-box ripple" style="margin-top: 10px;">Try again</button>
+                    <p class="normal-text" style="text-align: center;">Xin lỗi! Hiện chúng tôi chưa tìm thấy đối của bạn :(</p>
+                    <button id="btnTryAgain" class="button-round-box ripple" style="margin-top: 10px;">Thử lại</button>
             </div>
         </div>
 
         <div id="divLeaveConfirmationBackground" class="leave-confirmation-background" hidden>
             <div class="leave-confirmation-content">
-                <h1 class="header-text">Leave</h1>
-                <p class="normal-text" style="text-align: center;">Are you sure you want to leave this chat?</p>
-                <button id="btnLeaveYes" class="button-round-box ripple" style="margin-top: 20px;">Yes</button>
-                <button id="btnLeaveNo" class="button-round-box ripple" style="margin-top: 20px;">No</button>
+                <h1 class="header-text">Thoát</h1>
+                <p class="normal-text" style="text-align: center;">Bạn có chắc thoát chat?</p>
+                <button id="btnLeaveYes" class="button-round-box ripple" style="margin-top: 20px;">Có</button>
+                <button id="btnLeaveNo" class="button-round-box ripple" style="margin-top: 20px;">Không</button>
             </div>
         </div>
 
         <div id="divMoreMenu" class="more-menu">
-            <div id="btnMoreHome" class="items-more-menu-button">
-                <img width="25" height="25" src="/src/img/ImageHome.svg" style="margin:7px 7px 7px 0px;" />
-                <p class="text-more-menu-button">Home</p>
-            </div>
-            <div id="btnMoreBug" class="items-more-menu-button">
-                <img width="25" height="25" src="/src/img/ImageBug.svg" style="margin:7px 7px 7px 0px;" />
-                <p class="text-more-menu-button">Bug reporting</p>
-            </div>
-            <div id="btnMoreGithub" class="items-more-menu-button">
-                <img width="25" height="25" src="/src/img/ImageGithub.svg" style="margin:7px 7px 7px 0px;" />
-                <p class="text-more-menu-button">GAPITA on Github</p>
-            </div>
-            <div id="btnMoreAbout" class="items-more-menu-button">
-                <img width="25" height="25" src="/src/img/ImageInformation.svg" style="margin:7px 7px 7px 0px;" />
-                <p class="text-more-menu-button">About</p>
-            </div>
             <div class="more-menu-online">
                 <img width="25" height="25" src="/src/img/ImageOnlineUsers.svg" style="margin:7px 7px 7px 0px;" />
-                <p id="txtMoreOnlineUsers" class="text-more-menu-online">Online users:</p>
+                <p id="txtMoreOnlineUsers" class="text-more-menu-online">Người chờ chat:</p>
             </div>
         </div>
         <div class="menu-bar">
-            <div id="btnTitle" class="title-menu-bar">
-                <div class="logo-menu-bar"></div>
-                <p class="text-menu-bar">GAPITA</p>
-            </div>
             <div class="items-menu-bar">
-                <div id="btnMenuHome" class="items-menu-bar-button">
-                    <img width="25" height="25" src="/src/img/ImageHome.svg" style="margin:7px 7px 7px 0px;" />
-                    <p class="text-menu-bar-button">Home</p>
-                </div>
-                <div id="btnMenuBug" class="items-menu-bar-button">
-                    <img width="25" height="25" src="/src/img/ImageBug.svg" style="margin:7px 7px 7px 0px;" />
-                    <p class="text-menu-bar-button">Bug reporting</p>
-                </div>
-                <div id="btnMenuGithub" class="items-menu-bar-button">
-                    <img width="25" height="25" src="/src/img/ImageGithub.svg" style="margin:7px 7px 7px 0px;" />
-                    <p class="text-menu-bar-button">GAPITA on Github</p>
-                </div>
-                <div id="btnMenuAbout" class="items-menu-bar-button">
-                    <img width="25" height="25" src="/src/img/ImageInformation.svg" style="margin:7px 7px 7px 0px;" />
-                    <p class="text-menu-bar-button">About</p>
-                </div>
             </div>
             <div class="online-users-menu-bar">
                 <div class="online-users-logo">
                     <img width="22" height="22" src="/src/img/ImageOnlineUsers.svg" style="margin:9px;" />
                 </div>
-                <p id="txtOnlineUsers" class="text-menu-bar-online">Online users:</p>
+                
             </div>
             <div id="btnMore" class="more-menu-bar-button">
                 <img width="25" height="25" src="/src/img/ImageMore.svg" style="margin:7px 7px 7px 0px;" />
-                <p class="text-menu-bar-more">More</p>
+                <p id="txtOnlineUsers" class="text-menu-bar-online">Người chờ chat:</p>
             </div>
         </div>
 

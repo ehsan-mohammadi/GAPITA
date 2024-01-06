@@ -124,8 +124,8 @@ connection.start().catch(err => {
 // Connection on receive
 // On receive online users
 connection.on("getOnlineUsers", (onlineUsersCount: string) => {
-    txtOnlineUsers.innerHTML = `Online users: <span style="font-weight:bold">${onlineUsersCount}</span>`;
-    txtMoreOnlineUsers.innerHTML = `Online users: <span style="font-weight:bold">${onlineUsersCount}</span>`;
+    txtOnlineUsers.innerHTML = `Người chờ chat: <span style="font-weight:bold">${onlineUsersCount}</span>`;
+    txtMoreOnlineUsers.innerHTML = `Người chờ chat: <span style="font-weight:bold">${onlineUsersCount}</span>`;
 });
 
 // On receive join to a stranger
@@ -136,15 +136,15 @@ connection.on("joinToStranger", (isAloneStranger: boolean) => {
         $(divLoadingBackground).hide();
         $(divChat).show();
 
-        divChatContent.innerHTML += `<p class="connect-disconnect-message">You're connected to stranger</p>`;
-        divChatContent.innerHTML += `<p class="connect-disconnect-message">Now type something...</p>`;
+        divChatContent.innerHTML += `<p class="connect-disconnect-message">Đẵ kết nối với người lạ</p>`;
+        divChatContent.innerHTML += `<p class="connect-disconnect-message">Gõ gì mở bát đi bạn...</p>`;
         divChatContent.scrollTop = divChatContent.scrollHeight;
     }
 });
 
 // On stranger left the chat
 connection.on("strangerLeft", () => {
-    divChatContent.innerHTML += `<p class="connect-disconnect-message">Stranger left the chat</p>`;
+    divChatContent.innerHTML += `<p class="connect-disconnect-message">Người lạ đã thoát chat</p>`;
     divChatContent.scrollTop = divChatContent.scrollHeight;
     $(divLeft).hide();
     $(divRefresh).show();

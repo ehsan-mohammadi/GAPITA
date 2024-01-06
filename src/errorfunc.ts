@@ -19,8 +19,8 @@ Connection.start().catch(err => document.write(err))
 // Connection on receive
 // On receive online users
 Connection.on("getOnlineUsers", (onlineUsersCount: string) => {
-    txtOnlineUsers.innerHTML = `Online users: <span style="font-weight:bold">${onlineUsersCount}</span>`;
-    txtMoreOnlineUsers.innerHTML = `Online users: <span style="font-weight:bold">${onlineUsersCount}</span>`;
+    txtOnlineUsers.innerHTML = `Người chờ chat: <span style="font-weight:bold">${onlineUsersCount}</span>`;
+    txtMoreOnlineUsers.innerHTML = `Người chờ chat: <span style="font-weight:bold">${onlineUsersCount}</span>`;
 });
 
 // Go to home page "index.html"
