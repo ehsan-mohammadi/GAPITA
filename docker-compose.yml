@@ -1,0 +1,9 @@
+﻿services:
+  gapita:
+    ports:
+      - 8080:80
+      - 8081:443
+    image: gapita
+    build:
+      context: .
+      dockerfile: Dockerfile
