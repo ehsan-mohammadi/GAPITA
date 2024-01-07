@@ -227,7 +227,7 @@ function toggleEmojis() {
 
 // Disable btnSend and txtMessage
 function leftChat() {
-    divChatContent.innerHTML += `<p class="connect-disconnect-message">You left the chat</p>`;
+    divChatContent.innerHTML += `<p class="connect-disconnect-message">Bạn đã thoát chat</p>`;
     divChatContent.scrollTop = divChatContent.scrollHeight;
     $(divLeft).hide();
     $(divRefresh).show();
