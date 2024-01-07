@@ -211,7 +211,7 @@ function setEmojiButtonToGroup(index: number) {
 // Change emoji button border style when focus on txtMessage
 function focusOnTxtMessage(state: boolean) {
     if(state)
-        $(btnEmojis).css("border-color", "#fe9400");
+        $(btnEmojis).css("border-color", "#bb87bd");
     else
         $(btnEmojis).css("border-color", "#ccc");
 }

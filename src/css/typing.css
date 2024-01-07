@@ -21,7 +21,7 @@ div.typing {
   .spinner-typing > div {
     width: 10px;
     height: 10px;
-    background-color: #fe9400;
+    background-color: #bb87bd;
   
     border-radius: 100%;
     display: inline-block;

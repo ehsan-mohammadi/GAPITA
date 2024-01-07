@@ -97,7 +97,7 @@ p.text-menu-bar {
     vertical-align: top;
     line-height: 40px;
     margin: 0px 0px 0px 10px;
-    color:  #e78701;
+    color:  #bb87bd;
 }
 
 div.items-menu-bar {
@@ -114,7 +114,7 @@ div.items-menu-bar-button {
     height: 50px;
     margin-left: 20px;
     padding-top: 10px;
-    border-color: #fe9400;
+    border-color: #bb87bd;
     display: flex;
     justify-content: center;
     transition: 0.3s;
@@ -153,7 +153,7 @@ div.online-users-logo {
     background-color: #fff;
     border-style: solid;
     border-width: 1px;
-    border-color: #fe9400;
+    border-color: #bb87bd;
     border-radius: 100px;
 }
 
@@ -175,7 +175,7 @@ div.more-menu-bar-button {
     flex-basis: auto;
     margin-right: 10px;
     padding-top: 10px;
-    border-color: #fe9400;
+    border-color: #bb87bd;
     display: none;
     justify-content: center;
     transition: 0.3s;
@@ -232,7 +232,7 @@ div.items-more-menu-button, div.more-menu-online, p.text-more-menu-button, p.tex
         height: 50px;
         margin: 0px 20px 0px 20px;
         padding-top: 10px;
-        border-color: #fe9400;
+        border-color: #bb87bd;
         display: flex;
         justify-content: left;
         transition: 0.3s;
@@ -295,7 +295,7 @@ div.items-more-menu-button, div.more-menu-online, p.text-more-menu-button, p.tex
 div.header {
     margin-top: 60px;
     position: relative;
-    background:#f3f4ef;
+    background:#ffffff;
     width:100%;
     height:500px;
     overflow: hidden;
@@ -338,9 +338,10 @@ h2.header-sub-text {
 }
 
 button.button-round-box {
-    background-color: #fe9400;
-    color: white;
-    border: none;
+    background-color: white;
+    color: #bb87bd;
+    border-style: solid;
+    border-color: #bb87bd;
     text-align: center;
     text-decoration: none;
     outline: none;
@@ -356,16 +357,6 @@ button.button-round-box {
 .ripple {
   background-position: center;
   transition: background 0.8s;
-}
-
-.ripple:hover {
-  background: #fea72e radial-gradient(circle, transparent 1%, #fea72e 1%) center/15000%;
-}
-
-.ripple:active {
-  background-color: #fe9400;
-  background-size: 100%;
-  transition: background 0s;
 }
 
 h1.header-text {
@@ -430,7 +421,7 @@ div.features-logo {
     width: 80px;
     height: 80px;
     margin: 20px auto 20px auto;
-    background-color: #fe9400;
+    background-color: #bb87bd;
     border-radius: 100px;
 }
 
@@ -460,7 +451,7 @@ p.feature-header-text {
 div.footer {
     width: 100%;
     height: auto;
-    background-color: #f3f4ef;
+    background-color: #ffffff;
 }
 
 p.footer-text {
@@ -531,7 +522,7 @@ textarea.message-text-area {
 
 textarea.message-text-area:focus {
     outline: none !important;
-    border-color: #fe9400;
+    border-color: #bb87bd;
 }
 
 div.emojis-button {
@@ -608,7 +599,7 @@ a.emoji-button:hover {
 div.button-chat {
     width: 50px;
     height: 50px;
-    background-color: #fe9400;
+    background-color: #bb87bd;
     color: white;
     border: none;
     text-align: center;
@@ -628,7 +619,7 @@ div.chat-content {
     right: 0px;
     overflow-x: hidden;
     overflow-y:  scroll;
-    background-color: #f3f4ef;
+    background-color: #ffffff;
 }
 
 p.connect-disconnect-message {
@@ -660,7 +651,7 @@ p.message-caller {
     border-radius: 20px 20px 0px 20px;
     border-style: solid;
     border-width: 1px;
-    border-color: #ffcd88;
+    border-color: #bb87bd;
     overflow: hidden;
 }
 
@@ -758,7 +749,7 @@ div.image-ehsan {
     border-radius: 100px;
     border-style: solid;
     border-width: 1px;
-    border-color: #fe9400;
+    border-color: #bb87bd;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -773,7 +764,7 @@ div.button-contact {
     margin: 5px;
     width: 40px;
     height: 40px;
-    background-color: #fe9400;
+    background-color: #bb87bd;
     color: white;
     border: none;
     text-align: center;
