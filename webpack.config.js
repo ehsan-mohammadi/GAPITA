@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const Path = require("path");
 
 module.exports = {
     entry: {
@@ -49,11 +50,14 @@ module.exports = {
             chunks: ["eventfunc", "errorfunc"],
             filename: 'error.html'
         }),
-        new CopyWebpackPlugin([
-            {from: "./src/img", to: "./src/img"},
-            {from: "./src/fonts", to: "./src/fonts"},
-            {from: "./src/css", to: "./src/css"},
-            {from: "./src/sounds", to:"./src/sounds"}
-        ])
+
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: Path.resolve('./src/img'), to: './src/img' },
+                { from: Path.resolve('./src/fonts'), to: './src/fonts' },
+                { from: Path.resolve('./src/css'), to: './src/css' },
+                { from: Path.resolve('./src/sounds'), to: './src/sounds' },
+            ]
+        }),
     ]
 };
